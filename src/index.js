@@ -1,4 +1,5 @@
 import {ml_dsa44} from '@noble/post-quantum/ml-dsa.js';
+import crypto from 'crypto';
 import fs from "node:fs";
 import path from "node:path";
 
@@ -10,6 +11,21 @@ function readJsonFile(filePath) {
     console.error(err);
     process.exit(1);
   }
+}
+
+function hashFile(filePath, algorithm = 'sha256') {
+  return new Promise((resolve, reject) => {
+    const hash = crypto.createHash(algorithm);
+    const stream = fs.createReadStream(filePath);
+
+    stream.on(
+        'error',
+        (err) => { reject(new Error(`Error reading file: ${err.message}`)); });
+
+    stream.on('data', (chunk) => { hash.update(chunk); });
+
+    stream.on('end', () => { resolve(hash.digest('hex')); });
+  });
 }
 
 function makeDirs(dirPath) {
@@ -59,6 +75,7 @@ async function authCheck(req, res, db) {
 
 export {
   readJsonFile,
+  hashFile,
   makeDirs,
   makeResponse,
   makeErrorResponse,

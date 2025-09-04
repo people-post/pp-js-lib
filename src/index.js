@@ -48,9 +48,24 @@ function makeApiResponse(res, jd) {
 
 function makeResponse(res, jd) { return makeApiResponse(res, {data : jd}); }
 
-function makeErrorResponse(res, msg) {
-  return makeApiResponse(res,
-                         {error : {type : "DEV", code : null, data : msg}});
+function makeErrorResponse(res, type, code, msg) {
+  return makeApiResponse(res, {error : {type : type, code : code, data : msg}});
+}
+
+function makeUserErrorResponse(res, code) {
+  return makeErrorResponse(res, "USR", code, null);
+}
+
+function makeQuotaErrorResponse(res, code) {
+  return makeErrorResponse(res, "QTA", code, null);
+}
+
+function makeLimitationResponse(res, code) {
+  return makeErrorResponse(res, "LMT", code, null);
+}
+
+function makeDevErrorResponse(res, msg) {
+  return makeErrorResponse(res, "DEV", null, msg);
 }
 
 function verifyUint8ArraySignature(d, pubKey, sig) {
@@ -78,7 +93,10 @@ export {
   hashFile,
   makeDirs,
   makeResponse,
-  makeErrorResponse,
+  makeUserErrorResponse,
+  makeQuotaErrorResponse,
+  makeLimitationResponse,
+  makeDevErrorResponse,
   verifySignature,
   verifyUint8ArraySignature,
   authCheck

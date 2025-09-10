@@ -1,5 +1,5 @@
 {
-    "name": "brief-js-lib",
+    "name": "pp-js-lib",
     "version": "1.0.0",
     "description": "Library for other repos",
     "main": "src/index.js",
@@ -9,15 +9,15 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/nfsc-brief-web3/brief-js-lib.git"
+        "url": "git+https://github.com/people-post/pp-js-lib.git"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/nfsc-brief-web3/brief-js-lib/issues"
+        "url": "https://github.com/people-post/pp-js-lib/issues"
     },
-    "homepage": "https://github.com/nfsc-brief-web3/brief-js-lib#readme",
+    "homepage": "https://github.com/people-post/pp-js-lib#readme",
     "dependencies": {
         "@noble/post-quantum": "^0.5.0"
     }

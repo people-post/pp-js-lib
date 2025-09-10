@@ -1,2 +1,2 @@
-# brief-js-lib
+# pp-js-lib
 Library for other repos

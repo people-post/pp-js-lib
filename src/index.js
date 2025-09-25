@@ -81,7 +81,7 @@ function verifySignature(data, pubKey, sig) {
 
 async function authCheck(req, res, db) {
   let token = req.headers.authorization?.split('Bearer ')?.pop();
-  let u = db.getUser(token);
+  let u = db.getUserById(token);
   if (!u) {
     throw new Error("Not authorized");
   }

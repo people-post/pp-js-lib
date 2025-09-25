@@ -71,7 +71,7 @@ function makeDevErrorResponse(res, msg) {
 function verifyUint8ArraySignature(d, pubKey, sig) {
   const p = Uint8Array.from(Buffer.from(pubKey, 'hex'));
   const s = Uint8Array.from(Buffer.from(sig, 'hex'));
-  return ml_dsa44.verify(p, d, s);
+  return ml_dsa44.verify(s, d, p);
 }
 
 function verifySignature(data, pubKey, sig) {
